@@ -11,11 +11,18 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="120"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Name="dg_Contacts" Grid.Column="0">
+        <DataGrid Name="dg_Contacts" Grid.Column="0" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
         </DataGrid>
         <StackPanel Grid.Column="1">
-            <Button Name="Refresh" Content="Refresh" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="Refresh_Click" />
-            <Button Name="AddContact" Content="Add Contact" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="AddContact_Click" />
-        </StackPanel>        
+            <Button Name="btn_AddContact" Content="Add Contact" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_AddContact_Click" />
+            <Button Visibility="Hidden" Name="btn_Edit" Content="Edit" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_Edit_Click" />
+            <Button Visibility="Hidden" Name="btn_Delete" Content="Delete" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_Delete_Click" />
+
+        </StackPanel>
     </Grid>
 </Window>

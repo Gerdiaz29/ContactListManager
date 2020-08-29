@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ContactListManager.Enums;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactListManager.Model
+namespace ContactListManager.Models
 {
     public class Contact
     {
         public int? Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
-        public PhoneTypes PhoneType { get; set; }
+        public PhoneTypes? PhoneType { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int PostalCode { get; set; }
-
-
+        public string PostalCode { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Contact Clone()
         {
@@ -34,37 +38,9 @@ namespace ContactListManager.Model
                 StreetAddress = StreetAddress,
                 City = City,
                 PostalCode = PostalCode,
-                State = State
+                State = State,
+                IsDeleted=IsDeleted
             };
         }
-    }
-
-    public enum PhoneTypes
-    {
-        Mobile = 0,
-        Home = 1,
-        Work = 2
-    }
-
-
-
-    public static class ContactsStorage
-    {
-
-        private static List<Contact> _contacts = new List<Contact>();
-
-        public static List<Contact> GetContacts()
-        {
-            return _contacts.Select(item => item.Clone()).ToList();
-        }
-
-        public static void AddContact(Contact contact)
-        {
-            var newContact = contact.Clone();
-            newContact.Id = (_contacts?.Max(c => c.Id) ?? 0) + 1;
-
-            _contacts.Add(newContact.Clone());
-        }
-
     }
 }

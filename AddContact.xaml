@@ -8,25 +8,25 @@
       Title="Add Contact" Height="560">
 
     <StackPanel Width="350">
-        <Label Content="First Name"/>
-        <TextBox Name="tb_FirstName" Margin="5" ></TextBox>
+        <Label Content="First Name" />
+        <TextBox Name="tb_FirstName" Margin="5" Text="{Binding Path=FirstName, Mode=TwoWay}" ></TextBox>
         <Label Content="Last Name"/>
-        <TextBox Name="tb_LastName" Margin="5"></TextBox>
+        <TextBox Name="tb_LastName" Margin="5" Text="{Binding Path=LastName, Mode=TwoWay}"></TextBox>
         <Label Content="Email"/>
-        <TextBox Name="tb_Email" Margin="5"></TextBox>
+        <TextBox Name="tb_Email" Margin="5" Text="{Binding Path=Email, Mode=TwoWay}"></TextBox>
         <Label Content="Phone Number"/>
-        <TextBox Name="tb_PhoneNumber" Margin="5"></TextBox>
+        <TextBox Name="tb_PhoneNumber" Margin="5" Text="{Binding Path=PhoneNumber, Mode=TwoWay}"></TextBox>
         <Label Content="Phone Type"/>
-        <ComboBox Name="cb_PhoneType" Margin="5" />
+        <ComboBox Name="cb_PhoneType" Margin="5" SelectedValue="{Binding Path=PhoneType, Mode=TwoWay}" />
         <Label Content="Street Address"/>
-        <TextBox Name="tb_StreetAddress" Margin="5"></TextBox>
+        <TextBox Name="tb_StreetAddress" Margin="5" Text="{Binding Path=StreetAddress, Mode=TwoWay}"></TextBox>
         <Label Content="City"/>
-        <TextBox Name="tb_City" Margin="5"></TextBox>
+        <TextBox Name="tb_City" Margin="5" Text="{Binding Path=City, Mode=TwoWay}"></TextBox>
         <Label Content="State"/>
-        <TextBox Name="tb_State" Margin="5"></TextBox>
+        <TextBox Name="tb_State" Margin="5" Text="{Binding Path=State, Mode=TwoWay}"></TextBox>
         <Label Content="Postal Code"/>
-        <TextBox Name="tb_PostalCode" Margin="5"></TextBox>
+        <TextBox Name="tb_PostalCode" Margin="5" Text="{Binding Path=PostalCode, Mode=TwoWay}"></TextBox>
 
-        <Button Content="Save" Height="20" Width="80" Margin="5" FontWeight="Bold" Click="Button_Click" />
+        <Button Name="btn_Save" Content="Save" Height="20" Width="80" Margin="5" FontWeight="Bold" Click="btn_Save_Click" />
     </StackPanel>
 </Window>
