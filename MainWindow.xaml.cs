@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ContactListManager.Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ContactListManager
 {
@@ -22,7 +11,35 @@ namespace ContactListManager
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
+
+            var contact = new Contact
+            {
+                FirstName = "Gerardo",
+                LastName = "Diaz",
+                City = "Orlando",
+                Email = "gerardoadh_90@hotmail.com",
+                PhoneNumber = "3863019507",
+                PhoneType = PhoneTypes.Mobile,
+                PostalCode = 32824,
+                State = "Florida",
+                StreetAddress = "14756 Huntcliff Park Way"
+            };
+            ContactsStorage.AddContact(contact);
+            dg_Contacts.ItemsSource = ContactsStorage.GetContacts();
+
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            dg_Contacts.ItemsSource = ContactsStorage.GetContacts();
+        }
+
+        private void AddContact_Click(object sender, RoutedEventArgs e)
+        {
+            AddContact addContact = new AddContact();
+
+            addContact.Show();
         }
     }
 }

@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactListManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Contact Manager" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="dg_Contacts" Grid.Column="0">
+        </DataGrid>
+        <StackPanel Grid.Column="1">
+            <Button Name="Refresh" Content="Refresh" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="Refresh_Click" />
+            <Button Name="AddContact" Content="Add Contact" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="AddContact_Click" />
+        </StackPanel>        
     </Grid>
 </Window>
