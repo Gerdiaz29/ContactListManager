@@ -1,6 +1,7 @@
 ﻿using ContactListManager.Enums;
 using ContactListManager.Models;
 using ContactListManager.Storages;
+using ContactListManager.ViewModels;
 using System;
 using System.Linq;
 using System.Windows;
@@ -13,20 +14,21 @@ namespace ContactListManager
     public partial class AddContact : Window
     {
         private MainWindow _mainWindow;
-        private Contact _contact;
+        private ContactViewModel _contact;
         private bool _isEdit;
-        public AddContact(MainWindow mainWindow, Contact contact = null, bool isEdit = false)
+        public AddContact(MainWindow mainWindow, ContactViewModel contact = null, bool isEdit = false)
         {
 
             InitializeComponent();
-            _mainWindow = mainWindow;
-            cb_PhoneType.ItemsSource = Enum.GetValues(typeof(PhoneTypes)).Cast<PhoneTypes>();
-            _contact = contact ?? new Contact();
-            this.DataContext = _contact;
             _isEdit = isEdit;
-            if (isEdit)
+            _mainWindow = mainWindow;
+
+            cb_PhoneType.ItemsSource = Enum.GetValues(typeof(PhoneTypes)).Cast<PhoneTypes>();
+            _contact = contact ?? new ContactViewModel();
+            this.DataContext = _contact;
+            if (_isEdit)
             {
-                this.Title = "Edit Contact";
+                this.Title = $"Edit contact {contact.FirstName} (#{contact.Id})";
             }
         }
 

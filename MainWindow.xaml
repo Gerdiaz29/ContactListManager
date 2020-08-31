@@ -7,18 +7,28 @@
         mc:Ignorable="d"
         Title="Contact Manager" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="120"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Name="dg_Contacts" Grid.Column="0" IsReadOnly="True" SelectionMode="Single">
+        <Menu Grid.Row="0" IsMainMenu="True" Grid.ColumnSpan="2" Margin="0,0,0,10">
+            <MenuItem Header="_File">
+                <MenuItem Name="MenuSave" Header="_Save" Click="MenuSave_Click"/>
+                <MenuItem Name="MenuLoad" Header="_Load" Click="MenuLoad_Click"/>
+            </MenuItem>            
+        </Menu>
+        <DataGrid  AutoGeneratingColumn="dg_Contacts_AutoGeneratingColumn" Name="dg_Contacts" Grid.Row="1" Grid.Column="0" IsReadOnly="True" SelectionMode="Single" >
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick" />
                 </Style>
             </DataGrid.ItemContainerStyle>
         </DataGrid>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="2">
             <Button Name="btn_AddContact" Content="Add Contact" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_AddContact_Click" />
             <Button Visibility="Hidden" Name="btn_Edit" Content="Edit" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_Edit_Click" />
             <Button Visibility="Hidden" Name="btn_Delete" Content="Delete" Margin="5" Width="100" Height="40" VerticalAlignment="Top" Click="btn_Delete_Click" />
