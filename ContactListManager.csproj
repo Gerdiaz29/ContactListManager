@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\Utils.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Page Include="AddContact.xaml">
       <SubType>Designer</SubType>

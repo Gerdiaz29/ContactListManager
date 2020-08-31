@@ -1,4 +1,5 @@
 ﻿using ContactListManager.Models;
+using ContactListManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +11,38 @@ namespace ContactListManager.Storages
 
         private static List<Contact> _contacts = new List<Contact>();
 
-        public static List<Contact> GetContacts()
+        public static List<ContactViewModel> GetContacts()
         {
-            return _contacts.Where(c => !c.IsDeleted).Select(c => c.Clone()).ToList();
+            return _contacts.Where(c => !c.IsDeleted).Select(c => c.ToViewModel()).ToList();
         }
 
-        public static void AddContact(Contact contact)
+        internal static void AddContact(ContactViewModel contact)
         {
-            var newContact = contact.Clone();
-            newContact.Id = (_contacts?.Max(c => c.Id) ?? 0) + 1;
+            if (contact != null)
+            {
+                var newContact = new Contact
+                {
+                    Id = contact.Id,
+                    FirstName = contact.FirstName,
+                    LastName = contact.LastName,
+                    Email = contact.Email,
+                    City = contact.City,
+                    State = contact.State,
+                    StreetAddress = contact.StreetAddress,
+                    PhoneNumber = contact.PhoneNumber,
+                    PhoneType = contact.PhoneType,
+                    PostalCode = contact.PostalCode,
+                    IsDeleted = false
+                };
 
-            _contacts.Add(newContact.Clone());
+                newContact.Id = (_contacts?.Max(c => c.Id) ?? 0) + 1;
+
+                _contacts.Add(newContact);
+            }
+
         }
 
-        internal static void EditContact(Contact contact)
+        internal static void EditContact(ContactViewModel contact)
         {
             if (contact != null)
             {
@@ -44,7 +63,7 @@ namespace ContactListManager.Storages
             }
         }
 
-        internal static void DeleteContact(Contact contact)
+        internal static void DeleteContact(ContactViewModel contact)
         {
             if (contact != null)
             {

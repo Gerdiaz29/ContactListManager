@@ -1,4 +1,5 @@
 ﻿using ContactListManager.Enums;
+using ContactListManager.ViewModels;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
@@ -10,13 +11,9 @@ namespace ContactListManager.Models
     public class Contact
     {
         public int? Id { get; set; }
-        [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         public PhoneTypes? PhoneType { get; set; }
         public string StreetAddress { get; set; }
@@ -25,9 +22,9 @@ namespace ContactListManager.Models
         public string PostalCode { get; set; }
         public bool IsDeleted { get; set; }
 
-        public Contact Clone()
+        public ContactViewModel ToViewModel()
         {
-            return new Contact()
+            return new ContactViewModel()
             {
                 Id = Id,
                 FirstName = FirstName,
@@ -39,7 +36,6 @@ namespace ContactListManager.Models
                 City = City,
                 PostalCode = PostalCode,
                 State = State,
-                IsDeleted=IsDeleted
             };
         }
     }
