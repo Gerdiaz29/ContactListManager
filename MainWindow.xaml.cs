@@ -39,8 +39,6 @@ namespace ContactListManager
         {
             btn_Edit.Visibility = Visibility.Visible;
             btn_Delete.Visibility = Visibility.Visible;
-
-
         }
 
         private void btn_Edit_Click(object sender, RoutedEventArgs e)
@@ -113,6 +111,12 @@ namespace ContactListManager
             {
                 e.Column.Header = atb.Name;
             }
+        }
+
+        private void DataGridRow_Selected(object sender, RoutedEventArgs e)
+        {
+            btn_Edit.Visibility = Visibility.Visible;
+            btn_Delete.Visibility = Visibility.Visible;
         }
     }
 }
