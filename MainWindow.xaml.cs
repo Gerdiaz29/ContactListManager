@@ -20,23 +20,8 @@ namespace ContactListManager
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            var contact = new ContactViewModel
-            {
-                FirstName = "Gerardo",
-                LastName = "Diaz",
-                City = "Orlando",
-                Email = "gerardoadh_90@hotmail.com",
-                PhoneNumber = "3863019507",
-                PhoneType = PhoneTypes.Mobile,
-                PostalCode = "32824",
-                State = "Florida",
-                StreetAddress = "14756 Huntcliff Park Way"
-            };
-            ContactsStorage.AddContact(contact);
+            InitializeComponent();            
             dg_Contacts.ItemsSource = ContactsStorage.GetContacts();
-
         }
 
         public void RefreshGrid()
@@ -76,6 +61,7 @@ namespace ContactListManager
             {
                 ContactsStorage.DeleteContact(contact);
                 RefreshGrid();
+                MessageBox.Show($"Contact {contact.FirstName} has been deleted successfuly");
             }
         }
 
@@ -93,7 +79,7 @@ namespace ContactListManager
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, xmlfile);
-                MessageBox.Show("Contacts has been saved succesfuly");
+                MessageBox.Show("Contacts has been saved successfuly");
             }
         }
 
@@ -115,7 +101,7 @@ namespace ContactListManager
                     ContactsStorage.AddContact(contact);
                 }                
                 RefreshGrid();
-                MessageBox.Show("Contacts has been loaded succesfuly");
+                MessageBox.Show("Contacts has been loaded successfuly");
             }
         }        
 
